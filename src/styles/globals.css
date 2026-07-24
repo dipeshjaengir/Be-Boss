@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./typography.css";
+
+/* Base HTML & Focus Accessibility */
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-main);
+}
+
+/* Focus Ring in Muted Brass */
+:focus-visible {
+  outline: 2px solid var(--accent-gold-base);
+  outline-offset: 4px;
+}
+
+/* Glassmorphism Utility Classes */
+.glass-panel {
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-border-light);
+}
+
+.glass-panel-gold {
+  background: var(--glass-bg-medium);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-border-gold);
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

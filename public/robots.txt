@@ -1,0 +1,5 @@
+# BE BOSS Barbers Portsmouth - Robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://bebossbarbers.co.uk/sitemap.xml
