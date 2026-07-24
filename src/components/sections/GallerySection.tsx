@@ -25,40 +25,40 @@ export const GallerySection: React.FC = () => {
 
   return (
     <>
-      <Section id="lookbook" variant="default" padding="lg">
+      <Section id="lookbook" variant="stone-grey" padding="lg">
         <div className="space-y-14 text-center">
           {/* Section Header */}
           <div className="space-y-4 max-w-2xl mx-auto">
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#B08D57]/10 border border-[#B08D57]/30 text-xs font-semibold uppercase tracking-wider text-[#B08D57]">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-sm bg-[#B08D57]/15 border border-[#B08D57]/40 text-xs font-semibold uppercase tracking-widest text-[#B08D57]">
               <Camera className="w-3.5 h-3.5" />
               <span>Editorial Visual Gallery</span>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[#F5F1EA] tracking-tight">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[#171717] tracking-tight">
               Precision In Every Detail
             </h2>
-            <p className="text-base text-[#A19B91] leading-relaxed font-normal">
+            <p className="text-base text-[#525252] leading-relaxed font-normal">
               Explore our curated portfolio of razor skin fades, executive scissor cuts, and luxury beard sculpting transformations.
             </p>
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-2xl bg-[#232323] border border-white/10 max-w-4xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-md bg-[#DFDBCF] border border-[#C5BFB0] max-w-4xl mx-auto">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`relative px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#B08D57] ${
+                  className={`relative px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#B08D57] ${
                     isActive
                       ? 'text-[#171717] font-bold'
-                      : 'text-[#A19B91] hover:text-[#F5F1EA] hover:bg-white/5'
+                      : 'text-[#525252] hover:text-[#171717] hover:bg-white/40'
                   }`}
                 >
                   {isActive && (
                     <motion.div
                       layoutId="activeGalleryTab"
-                      className="absolute inset-0 bg-[#B08D57] rounded-xl shadow-sm"
+                      className="absolute inset-0 bg-[#B08D57] rounded-sm shadow-sm"
                       transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                     />
                   )}
@@ -84,7 +84,7 @@ export const GallerySection: React.FC = () => {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group relative rounded-3xl overflow-hidden bg-[#232323] border border-white/10 hover:border-[#B08D57]/50 cursor-pointer shadow-2xl transition-all duration-500 min-h-[380px] flex flex-col justify-between"
+                  className="group relative rounded-lg overflow-hidden bg-white border border-[#C5BFB0] hover:border-[#B08D57] cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 min-h-[380px] flex flex-col justify-between"
                 >
                   {/* Full High-Resolution Photography Layer */}
                   <div className="absolute inset-0 z-0">
@@ -93,17 +93,17 @@ export const GallerySection: React.FC = () => {
                       alt={item.title}
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#171717] via-[#171717]/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#171717] via-[#171717]/40 to-transparent opacity-90" />
                   </div>
 
                   {/* Top Badges */}
                   <div className="relative z-10 p-6 flex items-center justify-between">
-                    <span className="px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest text-[#B08D57] border border-[#B08D57]/30">
+                    <span className="px-3 py-1 rounded-sm bg-black/80 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest text-[#B08D57] border border-[#B08D57]/30">
                       {item.categoryLabel}
                     </span>
 
                     {item.beforeImageUrl && (
-                      <span className="px-3 py-1 rounded-full bg-[#B08D57]/90 text-[#171717] text-[10px] font-bold flex items-center space-x-1 shadow-md">
+                      <span className="px-3 py-1 rounded-sm bg-[#B08D57] text-[#171717] text-[10px] font-bold flex items-center space-x-1 shadow-md">
                         <SlidersHorizontal className="w-3 h-3" />
                         <span>Before/After</span>
                       </span>

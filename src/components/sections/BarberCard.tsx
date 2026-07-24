@@ -18,7 +18,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col justify-between rounded-3xl overflow-hidden bg-[#232323] border border-white/10 hover:border-[#B08D57]/50 transition-all duration-500 shadow-2xl min-h-[520px]"
+      className="group relative flex flex-col justify-between rounded-lg overflow-hidden bg-[#171717] border border-white/10 hover:border-[#B08D57]/50 transition-all duration-500 shadow-2xl min-h-[520px]"
     >
       {/* Editorial Barber Photography Canvas Container */}
       <div className="relative h-80 w-full overflow-hidden bg-black">
@@ -27,11 +27,11 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
           alt={`BE BOSS Master Barber ${barber.name}`}
           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#232323] via-[#232323]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#171717] via-[#171717]/30 to-transparent" />
 
         {/* Experience Badge Overlay */}
         <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
-          <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest text-[#B08D57] border border-[#B08D57]/30">
+          <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-sm bg-black/80 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest text-[#B08D57] border border-[#B08D57]/30">
             <Award className="w-3 h-3" />
             <span>{barber.experienceYears} Years Craft</span>
           </span>
@@ -40,7 +40,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
             href={`https://instagram.com/${barber.instagramHandle.replace('@', '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-full bg-black/60 backdrop-blur-md text-neutral-400 hover:text-[#B08D57] hover:bg-black/90 transition-all focus:outline-none focus:ring-2 focus:ring-[#B08D57]"
+            className="p-2 rounded-sm bg-black/60 backdrop-blur-md text-neutral-400 hover:text-[#B08D57] hover:bg-black/90 transition-all focus:outline-none focus:ring-2 focus:ring-[#B08D57]"
             aria-label={`View ${barber.name} on Instagram`}
           >
             <ExternalLink className="w-4 h-4" />
@@ -72,7 +72,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
               {barber.specialties.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-1 rounded-md bg-[#171717] border border-white/10 text-[11px] text-[#F5F1EA]"
+                  className="px-2.5 py-1 rounded-sm bg-[#232323] border border-white/10 text-[11px] text-[#F5F1EA]"
                 >
                   {skill}
                 </span>

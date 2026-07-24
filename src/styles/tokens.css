@@ -1,101 +1,35 @@
-/* BE BOSS BARBERS - EDITORIAL PRESTIGE DESIGN TOKENS */
+/* BE BOSS BARBERS - EDITORIAL ART DIRECTION TOKENS */
 :root {
-  /* Core Editorial Base Palette (Aesop / Tom Ford / COS Inspired) */
-  --bg-primary: #171717;         /* Dark Graphite */
-  --bg-secondary: #232323;       /* Deep Charcoal */
-  --bg-tertiary: #2D2D2D;        /* Soft Elevated Panel */
+  /* Alternating Editorial Backgrounds */
+  --bg-dark-graphite: #171717;    /* Deep Graphite */
+  --bg-deep-charcoal: #232323;     /* Deep Charcoal */
+  --bg-warm-ivory: #F5F1EA;       /* Warm Ivory (Light Section) */
+  --bg-stone-grey: #EAE7E1;       /* Soft Stone Grey (Light Section) */
 
-  /* Refined Editorial Accents */
-  --accent-gold-base: #B08D57;    /* Muted Brass (Subtle Metallic) */
-  --accent-gold-hover: #C5A065;   /* Warm Sand Accent */
-  --accent-gold-muted: #6E5837;   /* Muted Brass Outline */
-  --accent-bronze: #8A6D3B;       /* Vintage Warmth */
+  /* Refined Accent Tokens */
+  --accent-gold-base: #B08D57;    /* Muted Brass */
+  --accent-gold-hover: #C5A065;   /* Warm Sand */
+  --accent-gold-muted: #6E5837;   /* Outline Brass */
 
-  /* Editorial Text System */
-  --text-main: #F5F1EA;           /* Warm Ivory */
-  --text-muted: #A19B91;          /* Soft Stone Grey */
-  --text-subtle: #6E685E;         /* Muted Warm Sub-label */
+  /* Editorial Text Tokens */
+  --text-dark: #171717;           /* For Light Backgrounds */
+  --text-dark-muted: #525252;     /* For Light Background Sub-titles */
+  --text-light: #F5F1EA;          /* For Dark Backgrounds */
+  --text-light-muted: #A19B91;     /* For Dark Background Sub-titles */
 
-  /* Status & Border Tokens */
-  --success: #10B981;
-  --error: #EF4444;
-  --border-glass: rgba(245, 241, 234, 0.08);
-  --border-gold-glow: rgba(176, 141, 87, 0.20);
-
-  /* 8px Spatial System */
-  --space-0: 0px;
-  --space-05: 4px;
-  --space-1: 8px;
-  --space-15: 12px;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-6: 48px;
-  --space-8: 64px;
-  --space-12: 96px;
-  --space-16: 128px;
-
-  /* Border Radius Tokens */
+  /* Reduced Editorial Border Radii (COS / Saint Laurent Inspired) */
   --radius-none: 0px;
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 14px;
   --radius-full: 9999px;
 
-  /* Subtle Editorial Elevation (No Glossy Glows) */
-  --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.7);
-  --shadow-xl: 0 24px 48px -8px rgba(0, 0, 0, 0.9);
-  --shadow-gold-sm: 0 0 12px rgba(176, 141, 87, 0.10);
-  --shadow-gold-glow: 0 0 20px rgba(176, 141, 87, 0.20);
-  --shadow-gold-lg: 0 0 32px rgba(176, 141, 87, 0.30);
+  /* Spatial & Elevation Tokens */
+  --shadow-editorial: 0 16px 40px -8px rgba(0, 0, 0, 0.25);
+  --shadow-light-card: 0 12px 30px -6px rgba(0, 0, 0, 0.08);
 
-  /* Glassmorphism & Blur Tokens */
-  --glass-bg-subtle: rgba(35, 35, 35, 0.40);
-  --glass-bg-medium: rgba(35, 35, 35, 0.70);
-  --glass-bg-heavy: rgba(35, 35, 35, 0.90);
-  --glass-bg-gold: rgba(176, 141, 87, 0.04);
-
-  --glass-border-light: rgba(245, 241, 234, 0.08);
-  --glass-border-gold: rgba(176, 141, 87, 0.25);
-
-  --blur-none: blur(0px);
-  --blur-sm: blur(8px);
-  --blur-md: blur(16px);
-  --blur-lg: blur(24px);
-  --blur-xl: blur(40px);
-
-  /* Opacity Scale */
-  --opacity-disabled: 0.40;
-  --opacity-muted: 0.60;
-  --opacity-secondary: 0.80;
-  --opacity-full: 1.00;
-  --opacity-hover: 0.90;
-
-  /* Z-Index Scale */
-  --z-negative: -1;
-  --z-base: 0;
-  --z-content: 10;
-  --z-dropdown: 100;
-  --z-sticky: 200;
-  --z-header: 500;
-  --z-mobile-bar: 600;
-  --z-backdrop: 800;
-  --z-modal: 900;
-  --z-toast: 1000;
-
-  /* Motion Tokens & Curves */
-  --duration-fast: 150ms;
   --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --duration-epic: 800ms;
-
-  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
-  --ease-out-smooth: cubic-bezier(0.0, 0.0, 0.2, 1);
-  --ease-in-out: cubic-bezier(0.4, 0.0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
 }

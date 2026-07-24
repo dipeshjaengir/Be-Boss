@@ -23,10 +23,10 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
         return (
           <div
             key={item.id}
-            className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+            className={`rounded-lg border transition-all duration-300 overflow-hidden ${
               isOpen
-                ? 'bg-[#232323] border-[#B08D57]/50 shadow-lg'
-                : 'bg-[#232323]/60 border-white/10 hover:border-white/20'
+                ? 'bg-white border-[#B08D57] shadow-md'
+                : 'bg-[#F0ECE1] border-[#D5CFBF] hover:border-[#B08D57]'
             }`}
           >
             <button
@@ -37,13 +37,13 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
             >
               <div className="flex items-center space-x-3">
                 <HelpCircle className="w-4 h-4 text-[#B08D57] shrink-0" />
-                <h3 className="font-display font-semibold text-base sm:text-lg text-[#F5F1EA]">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-[#171717]">
                   {item.question}
                 </h3>
               </div>
               <div
-                className={`p-1.5 rounded-full bg-black/40 text-[#B08D57] transition-transform duration-300 ${
-                  isOpen ? 'rotate-180 bg-[#B08D57]/20' : ''
+                className={`p-1.5 rounded-full bg-[#E0DBCF] text-[#B08D57] transition-transform duration-300 ${
+                  isOpen ? 'rotate-180 bg-[#B08D57]/20 text-[#B08D57]' : ''
                 }`}
               >
                 <ChevronDown className="w-4 h-4" />
@@ -59,7 +59,7 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="px-5 sm:px-6 pb-6 pt-0 text-xs sm:text-sm text-[#A19B91] leading-relaxed border-t border-white/5 mt-1 pt-4">
+                  <div className="px-5 sm:px-6 pb-6 pt-0 text-xs sm:text-sm text-[#525252] leading-relaxed border-t border-[#E0DBCF] mt-1 pt-4">
                     {item.answer}
                   </div>
                 </motion.div>
