@@ -1,35 +1,49 @@
-import { InputHTMLAttributes, forwardRef } from 'react';
+import { InputHTMLAttributes, ReactNode, forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
-  helperText?: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, helperText, className, id, ...props }, ref) => {
+  ({ label, error, leftIcon, rightIcon, className, id, ...props }, ref) => {
     const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, '-') : undefined);
 
     return (
-      <div className="w-full space-y-1.5">
+      <div className="space-y-1.5 w-full text-left">
         {label && (
-          <label htmlFor={inputId} className="block text-xs font-semibold uppercase tracking-wider text-neutral-300">
+          <label htmlFor={inputId} className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
             {label}
           </label>
         )}
-        <input
-          id={inputId}
-          ref={ref}
-          className={cn(
-            'w-full px-4 py-3 bg-[#0A0B0D] border border-[#2A2E37] rounded-lg text-[#F9FAFB] placeholder:text-neutral-500 text-sm focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all duration-200 disabled:opacity-50',
-            error && 'border-red-500 focus:border-red-500 focus:ring-red-500',
-            className
+        <div className="relative flex items-center">
+          {leftIcon && (
+            <div className="absolute left-3.5 text-[var(--text-muted)] pointer-events-none">
+              {leftIcon}
+            </div>
           )}
-          {...props}
-        />
-        {error && <p className="text-xs text-red-400 font-medium">{error}</p>}
-        {!error && helperText && <p className="text-xs text-neutral-400">{helperText}</p>}
+          <input
+            id={inputId}
+            ref={ref}
+            className={cn(
+              'w-full px-4 py-3 text-xs bg-[var(--card-bg)] text-[var(--text-main)] placeholder-[var(--text-muted)] border rounded-sm transition-all duration-200 focus:outline-none focus:border-[#B08D57] focus:ring-1 focus:ring-[#B08D57]',
+              leftIcon && 'pl-10',
+              rightIcon && 'pr-10',
+              error ? 'border-red-500' : 'border-[var(--border-card)]',
+              className
+            )}
+            {...props}
+          />
+          {rightIcon && (
+            <div className="absolute right-3.5 text-[var(--text-muted)] pointer-events-none">
+              {rightIcon}
+            </div>
+          )}
+        </div>
+        {error && <p className="text-[11px] text-red-400 mt-1">{error}</p>}
       </div>
     );
   }

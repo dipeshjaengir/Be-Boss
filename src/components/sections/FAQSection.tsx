@@ -6,7 +6,7 @@ import { FAQ_DATA } from '../../config/faq-data';
 
 export const FAQSection: React.FC = () => {
   return (
-    <Section id="faq" variant="stone-grey" padding="lg">
+    <Section id="faq" variant="default" padding="lg">
       <div className="space-y-12 text-center">
         {/* Section Header */}
         <div className="space-y-4 max-w-2xl mx-auto">
@@ -14,10 +14,10 @@ export const FAQSection: React.FC = () => {
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Common Inquiries</span>
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[#171717] tracking-tight">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-[var(--text-main)] tracking-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-base text-[#525252] leading-relaxed font-normal">
+          <p className="text-base text-[var(--text-muted)] leading-relaxed font-normal">
             Everything you need to know about our Portsmouth shop location, booking policies, amenities, and grooming services.
           </p>
         </div>

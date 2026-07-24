@@ -1,14 +1,15 @@
 import React, { ReactNode, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
-import { modalSlideVariant } from '../../lib/animations';
+import { cn } from '../../lib/utils';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   children: ReactNode;
-  maxWidth?: 'sm' | 'md' | 'lg' | 'xl';
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '4xl';
+  className?: string;
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -16,11 +17,14 @@ export const Modal: React.FC<ModalProps> = ({
   onClose,
   title,
   children,
-  maxWidth = 'md',
+  maxWidth = 'lg',
+  className,
 }) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
     };
 
     if (isOpen) {
@@ -34,54 +38,70 @@ export const Modal: React.FC<ModalProps> = ({
     };
   }, [isOpen, onClose]);
 
-  const maxWidthClasses = {
+  const maxWidths = {
     sm: 'max-w-sm',
-    md: 'max-w-lg',
-    lg: 'max-w-2xl',
-    xl: 'max-w-4xl',
+    md: 'max-w-md',
+    lg: 'max-w-lg',
+    xl: 'max-w-xl',
+    '2xl': 'max-w-2xl',
+    '4xl': 'max-w-4xl',
   };
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div
-          className="fixed inset-0 z-[900] flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby={title ? 'modal-title' : undefined}
-        >
+        <div className="fixed inset-0 z-[900] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
             onClick={onClose}
             className="fixed inset-0 bg-black/80 backdrop-blur-md"
+            aria-hidden="true"
           />
 
-          {/* Dialog Card */}
+          {/* Modal Container */}
           <motion.div
-            variants={modalSlideVariant}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            className={`relative w-full ${maxWidthClasses[maxWidth]} bg-[#121418] border border-[#2A2E37] rounded-2xl p-6 sm:p-8 shadow-2xl z-[910] text-[#F9FAFB] max-h-[90vh] flex flex-col`}
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 10 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className={cn(
+              'relative w-full z-10 bg-[var(--card-bg)] text-[var(--text-main)] border border-[var(--border-card)] rounded-xl shadow-2xl overflow-hidden my-8',
+              maxWidths[maxWidth],
+              className
+            )}
+            role="dialog"
+            aria-modal="true"
           >
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-              {title && (
-                <h3 id="modal-title" className="text-xl font-display font-semibold text-[#D4AF37]">
-                  {title}
-                </h3>
-              )}
+            {/* Header */}
+            {title && (
+              <div className="flex items-center justify-between p-5 border-b border-[var(--border-subtle)]">
+                <h3 className="font-display font-bold text-xl text-[var(--text-main)]">{title}</h3>
+                <button
+                  onClick={onClose}
+                  className="p-1.5 rounded-full text-[var(--text-muted)] hover:text-[#B08D57] hover:bg-black/10 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#B08D57]"
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            )}
+
+            {!title && (
               <button
                 onClick={onClose}
-                className="p-2 rounded-full text-neutral-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#D4AF37]"
-                aria-label="Close dialog"
+                className="absolute top-4 right-4 z-20 p-1.5 rounded-full text-[var(--text-muted)] hover:text-[#B08D57] hover:bg-black/10 dark:hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-[#B08D57]"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>
-            </div>
-            <div className="overflow-y-auto pr-1 flex-1">{children}</div>
+            )}
+
+            {/* Content */}
+            <div className="p-6">{children}</div>
           </motion.div>
         </div>
       )}

@@ -7,18 +7,18 @@ import { TEAM_DATA } from '../../config/team-data';
 
 export const BarberSection: React.FC = () => {
   return (
-    <Section id="barbers" variant="charcoal" padding="lg">
+    <Section id="barbers" variant="default" padding="lg">
       <div className="space-y-12 text-center">
         {/* Section Heading */}
         <div className="space-y-4 max-w-2xl mx-auto">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-sm bg-[#B08D57]/10 border border-[#B08D57]/30 text-xs font-semibold uppercase tracking-wider text-[#B08D57]">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-sm bg-[#B08D57]/15 border border-[#B08D57]/40 text-xs font-semibold uppercase tracking-wider text-[#B08D57]">
             <Award className="w-3.5 h-3.5" />
             <span>Master Craftsmen Roster</span>
           </div>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[#F5F1EA] tracking-tight">
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--text-main)] tracking-tight">
             Engineered By Master Barbers
           </h2>
-          <p className="text-base text-[#A19B91] leading-relaxed font-normal">
+          <p className="text-base text-[var(--text-muted)] leading-relaxed font-normal">
             Our team brings over 30 years of combined Mayfair London training and international barbering heritage to Portsmouth.
           </p>
         </div>
@@ -33,12 +33,12 @@ export const BarberSection: React.FC = () => {
         </div>
 
         {/* Credentials & Quality Guarantee Note */}
-        <div className="pt-6 max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 p-6 rounded-lg bg-[#171717]/80 border border-white/10 text-xs text-[#A19B91]">
+        <div className="pt-6 max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6 p-6 rounded-lg bg-[var(--card-bg)] border border-[var(--border-card)] text-xs text-[var(--text-muted)]">
           <div className="flex items-center space-x-2">
             <ShieldCheck className="w-5 h-5 text-[#B08D57] shrink-0" />
             <span>Fully Licensed & Insured UK Establishment</span>
           </div>
-          <div className="hidden sm:block w-px h-4 bg-white/20" />
+          <div className="hidden sm:block w-px h-4 bg-[var(--border-subtle)]" />
           <div className="flex items-center space-x-2">
             <Sparkles className="w-5 h-5 text-[#B08D57] shrink-0" />
             <span>Bespoke Consultation Before Every Cut</span>

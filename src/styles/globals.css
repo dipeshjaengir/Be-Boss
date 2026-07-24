@@ -3,38 +3,31 @@
 @import "./tokens.css";
 @import "./typography.css";
 
-/* Base HTML & Focus Accessibility */
+/* Global Base HTML & Smooth Theme Transition */
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+  transition: background-color 400ms ease, color 400ms ease;
 }
 
 body {
   overflow-x: hidden;
   min-height: 100vh;
-  background: var(--bg-primary);
+  background-color: var(--site-bg);
   color: var(--text-main);
+  transition: background-color 400ms ease, color 400ms ease, border-color 400ms ease;
+}
+
+/* Global Transition for Theme Switching */
+*, ::before, ::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 350ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Focus Ring in Muted Brass */
 :focus-visible {
-  outline: 2px solid var(--accent-gold-base);
+  outline: 2px solid var(--accent-gold);
   outline-offset: 4px;
-}
-
-/* Glassmorphism Utility Classes */
-.glass-panel {
-  background: var(--glass-bg-medium);
-  backdrop-filter: var(--blur-md);
-  -webkit-backdrop-filter: var(--blur-md);
-  border: 1px solid var(--glass-border-light);
-}
-
-.glass-panel-gold {
-  background: var(--glass-bg-medium);
-  backdrop-filter: var(--blur-md);
-  -webkit-backdrop-filter: var(--blur-md);
-  border: 1px solid var(--glass-border-gold);
 }
 
 /* Reduced Motion Fallback */

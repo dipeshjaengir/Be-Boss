@@ -28,14 +28,14 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold tracking-wider uppercase transition-all duration-300 rounded-lg focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed select-none cursor-pointer';
+  const baseStyles = 'inline-flex items-center justify-center font-sans font-semibold tracking-wider uppercase transition-all duration-300 rounded-sm focus:outline-none disabled:opacity-40 disabled:cursor-not-allowed select-none cursor-pointer';
 
   const variants: Record<ButtonVariant, string> = {
-    primary: 'bg-[#B08D57] text-[#171717] hover:bg-[#C5A065] hover:shadow-[0_4px_16px_rgba(176,141,87,0.25)] active:scale-[0.98]',
-    secondary: 'bg-[#232323] text-[#F5F1EA] border border-[#3A3A3C] hover:border-[#B08D57]/50 hover:bg-[#2D2D2D] active:scale-[0.98]',
-    ghost: 'bg-transparent text-[#A19B91] hover:text-[#F5F1EA] hover:bg-white/5 active:scale-[0.98]',
-    outline: 'bg-transparent text-[#B08D57] border border-[#B08D57]/40 hover:border-[#B08D57] hover:bg-[#B08D57]/10 active:scale-[0.98]',
-    'gold-glow': 'bg-gradient-to-r from-[#B08D57] via-[#C5A065] to-[#B08D57] text-[#171717] shadow-[0_0_16px_rgba(176,141,87,0.25)] hover:shadow-[0_0_24px_rgba(176,141,87,0.4)] active:scale-[0.98]',
+    primary: 'bg-[#B08D57] text-[#171717] hover:bg-[#C5A065] hover:shadow-md active:scale-[0.98]',
+    secondary: 'bg-[var(--card-bg)] text-[var(--text-main)] border border-[var(--border-card)] hover:border-[#B08D57] hover:bg-black/5 dark:hover:bg-white/5 active:scale-[0.98]',
+    ghost: 'bg-transparent text-[var(--text-muted)] hover:text-[var(--text-main)] hover:bg-black/5 dark:hover:bg-white/5 active:scale-[0.98]',
+    outline: 'bg-transparent text-[#B08D57] border border-[#B08D57]/50 hover:border-[#B08D57] hover:bg-[#B08D57]/10 active:scale-[0.98]',
+    'gold-glow': 'bg-[#B08D57] text-[#171717] shadow-md hover:bg-[#C5A065] active:scale-[0.98]',
   };
 
   const sizes: Record<ButtonSize, string> = {

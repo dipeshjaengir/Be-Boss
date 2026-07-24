@@ -23,10 +23,10 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
         return (
           <div
             key={item.id}
-            className={`rounded-lg border transition-all duration-300 overflow-hidden ${
+            className={`rounded-xl border transition-all duration-300 overflow-hidden bg-[var(--card-bg)] ${
               isOpen
-                ? 'bg-white border-[#B08D57] shadow-md'
-                : 'bg-[#F0ECE1] border-[#D5CFBF] hover:border-[#B08D57]'
+                ? 'border-[#B08D57] shadow-md'
+                : 'border-[var(--border-card)] hover:border-[#B08D57]/60'
             }`}
           >
             <button
@@ -37,12 +37,12 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
             >
               <div className="flex items-center space-x-3">
                 <HelpCircle className="w-4 h-4 text-[#B08D57] shrink-0" />
-                <h3 className="font-display font-semibold text-base sm:text-lg text-[#171717]">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-[var(--text-main)]">
                   {item.question}
                 </h3>
               </div>
               <div
-                className={`p-1.5 rounded-full bg-[#E0DBCF] text-[#B08D57] transition-transform duration-300 ${
+                className={`p-1.5 rounded-full bg-[var(--site-bg)] text-[#B08D57] transition-transform duration-300 ${
                   isOpen ? 'rotate-180 bg-[#B08D57]/20 text-[#B08D57]' : ''
                 }`}
               >
@@ -59,7 +59,7 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({ items }) => {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <div className="px-5 sm:px-6 pb-6 pt-0 text-xs sm:text-sm text-[#525252] leading-relaxed border-t border-[#E0DBCF] mt-1 pt-4">
+                  <div className="px-5 sm:px-6 pb-6 pt-0 text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed border-t border-[var(--border-subtle)] mt-1 pt-4">
                     {item.answer}
                   </div>
                 </motion.div>

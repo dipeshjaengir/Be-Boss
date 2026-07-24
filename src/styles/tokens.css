@@ -1,35 +1,43 @@
-/* BE BOSS BARBERS - EDITORIAL ART DIRECTION TOKENS */
+/* BE BOSS BARBERS - THEME TOKEN ENGINE */
 :root {
-  /* Alternating Editorial Backgrounds */
-  --bg-dark-graphite: #171717;    /* Deep Graphite */
-  --bg-deep-charcoal: #232323;     /* Deep Charcoal */
-  --bg-warm-ivory: #F5F1EA;       /* Warm Ivory (Light Section) */
-  --bg-stone-grey: #EAE7E1;       /* Soft Stone Grey (Light Section) */
+  /* Default Dark Mode 🌙 Tokens */
+  --site-bg: #171717;
+  --card-bg: #232323;
+  --card-hover-bg: #2D2D2D;
+  --text-main: #F5F1EA;
+  --text-muted: #A19B91;
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --border-card: rgba(255, 255, 255, 0.12);
+  --accent-gold: #B08D57;
+  --accent-gold-hover: #C5A065;
+  --pill-bg: #232323;
+  --pill-border: rgba(176, 141, 87, 0.30);
+  --nav-bg: rgba(23, 23, 23, 0.90);
+  --overlay-gradient-from: rgba(23, 23, 23, 0.95);
+  --overlay-gradient-to: rgba(23, 23, 23, 0.60);
 
-  /* Refined Accent Tokens */
-  --accent-gold-base: #B08D57;    /* Muted Brass */
-  --accent-gold-hover: #C5A065;   /* Warm Sand */
-  --accent-gold-muted: #6E5837;   /* Outline Brass */
-
-  /* Editorial Text Tokens */
-  --text-dark: #171717;           /* For Light Backgrounds */
-  --text-dark-muted: #525252;     /* For Light Background Sub-titles */
-  --text-light: #F5F1EA;          /* For Dark Backgrounds */
-  --text-light-muted: #A19B91;     /* For Dark Background Sub-titles */
-
-  /* Reduced Editorial Border Radii (COS / Saint Laurent Inspired) */
-  --radius-none: 0px;
-  --radius-xs: 2px;
+  /* Radius Tokens */
   --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 10px;
-  --radius-xl: 14px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-full: 9999px;
+}
 
-  /* Spatial & Elevation Tokens */
-  --shadow-editorial: 0 16px 40px -8px rgba(0, 0, 0, 0.25);
-  --shadow-light-card: 0 12px 30px -6px rgba(0, 0, 0, 0.08);
-
-  --duration-normal: 300ms;
-  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+/* Light Mode ☀️ Tokens Override */
+html.light-mode {
+  --site-bg: #F5F1EA;
+  --card-bg: #FFFFFF;
+  --card-hover-bg: #FAFAFA;
+  --text-main: #171717;
+  --text-muted: #525252;
+  --border-subtle: #E5E0D5;
+  --border-card: #E0DBCF;
+  --accent-gold: #B08D57;
+  --accent-gold-hover: #967645;
+  --pill-bg: #EAE5DA;
+  --pill-border: rgba(176, 141, 87, 0.40);
+  --nav-bg: rgba(245, 241, 234, 0.92);
+  --overlay-gradient-from: rgba(245, 241, 234, 0.95);
+  --overlay-gradient-to: rgba(245, 241, 234, 0.70);
 }

@@ -25,7 +25,7 @@ export const GallerySection: React.FC = () => {
 
   return (
     <>
-      <Section id="lookbook" variant="stone-grey" padding="lg">
+      <Section id="lookbook" variant="default" padding="lg">
         <div className="space-y-14 text-center">
           {/* Section Header */}
           <div className="space-y-4 max-w-2xl mx-auto">
@@ -33,16 +33,16 @@ export const GallerySection: React.FC = () => {
               <Camera className="w-3.5 h-3.5" />
               <span>Editorial Visual Gallery</span>
             </div>
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[#171717] tracking-tight">
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--text-main)] tracking-tight">
               Precision In Every Detail
             </h2>
-            <p className="text-base text-[#525252] leading-relaxed font-normal">
+            <p className="text-base text-[var(--text-muted)] leading-relaxed font-normal">
               Explore our curated portfolio of razor skin fades, executive scissor cuts, and luxury beard sculpting transformations.
             </p>
           </div>
 
           {/* Category Filter Tabs */}
-          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-md bg-[#DFDBCF] border border-[#C5BFB0] max-w-4xl mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-2 p-1.5 rounded-md bg-[var(--card-bg)] border border-[var(--border-card)] max-w-4xl mx-auto">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
@@ -52,7 +52,7 @@ export const GallerySection: React.FC = () => {
                   className={`relative px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#B08D57] ${
                     isActive
                       ? 'text-[#171717] font-bold'
-                      : 'text-[#525252] hover:text-[#171717] hover:bg-white/40'
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'
                   }`}
                 >
                   {isActive && (
@@ -84,7 +84,7 @@ export const GallerySection: React.FC = () => {
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.4, delay: idx * 0.05 }}
                   onClick={() => setLightboxIndex(idx)}
-                  className="group relative rounded-lg overflow-hidden bg-white border border-[#C5BFB0] hover:border-[#B08D57] cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 min-h-[380px] flex flex-col justify-between"
+                  className="group relative rounded-xl overflow-hidden bg-[var(--card-bg)] border border-[var(--border-card)] hover:border-[#B08D57] cursor-pointer shadow-md hover:shadow-xl transition-all duration-500 min-h-[380px] flex flex-col justify-between"
                 >
                   {/* Full High-Resolution Photography Layer */}
                   <div className="absolute inset-0 z-0">
@@ -93,12 +93,12 @@ export const GallerySection: React.FC = () => {
                       alt={item.title}
                       className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#171717] via-[#171717]/40 to-transparent opacity-90" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--site-bg)] via-[var(--site-bg)]/40 to-transparent opacity-90" />
                   </div>
 
                   {/* Top Badges */}
                   <div className="relative z-10 p-6 flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-sm bg-black/80 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest text-[#B08D57] border border-[#B08D57]/30">
+                    <span className="px-3 py-1 rounded-sm bg-[var(--card-bg)]/90 backdrop-blur-md text-[10px] uppercase font-bold tracking-widest text-[#B08D57] border border-[#B08D57]/30">
                       {item.categoryLabel}
                     </span>
 
@@ -118,11 +118,11 @@ export const GallerySection: React.FC = () => {
                   </div>
 
                   {/* Bottom Information Box */}
-                  <div className="relative z-10 p-6 space-y-1 bg-gradient-to-t from-[#171717] via-[#171717]/90 to-transparent pt-12">
-                    <h3 className="font-display font-bold text-2xl text-[#F5F1EA] group-hover:text-[#B08D57] transition-colors">
+                  <div className="relative z-10 p-6 space-y-1 bg-gradient-to-t from-[var(--site-bg)] via-[var(--site-bg)]/90 to-transparent pt-12">
+                    <h3 className="font-display font-bold text-2xl text-[var(--text-main)] group-hover:text-[#B08D57] transition-colors">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-[#A19B91] line-clamp-2 leading-relaxed">{item.description}</p>
+                    <p className="text-xs text-[var(--text-muted)] line-clamp-2 leading-relaxed">{item.description}</p>
                   </div>
                 </motion.article>
               ))}

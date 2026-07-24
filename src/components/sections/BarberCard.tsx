@@ -18,7 +18,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex flex-col justify-between rounded-lg overflow-hidden bg-[#171717] border border-white/10 hover:border-[#B08D57]/50 transition-all duration-500 shadow-2xl min-h-[520px]"
+      className="group relative flex flex-col justify-between rounded-xl overflow-hidden bg-[var(--card-bg)] border border-[var(--border-card)] hover:border-[#B08D57]/60 transition-all duration-500 shadow-xl min-h-[520px]"
     >
       {/* Editorial Barber Photography Canvas Container */}
       <div className="relative h-80 w-full overflow-hidden bg-black">
@@ -27,7 +27,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
           alt={`BE BOSS Master Barber ${barber.name}`}
           className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 filter contrast-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#171717] via-[#171717]/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--card-bg)] via-[var(--card-bg)]/30 to-transparent" />
 
         {/* Experience Badge Overlay */}
         <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
@@ -40,7 +40,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
             href={`https://instagram.com/${barber.instagramHandle.replace('@', '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-sm bg-black/60 backdrop-blur-md text-neutral-400 hover:text-[#B08D57] hover:bg-black/90 transition-all focus:outline-none focus:ring-2 focus:ring-[#B08D57]"
+            className="p-2 rounded-sm bg-black/60 backdrop-blur-md text-neutral-300 hover:text-[#B08D57] hover:bg-black/90 transition-all focus:outline-none focus:ring-2 focus:ring-[#B08D57]"
             aria-label={`View ${barber.name} on Instagram`}
           >
             <ExternalLink className="w-4 h-4" />
@@ -49,7 +49,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
 
         {/* Bottom Barber Title Overlay */}
         <div className="absolute bottom-4 left-6 right-6 z-10 space-y-0.5">
-          <h3 className="font-display font-bold text-2xl text-[#F5F1EA] group-hover:text-[#B08D57] transition-colors">
+          <h3 className="font-display font-bold text-2xl text-[var(--text-main)] group-hover:text-[#B08D57] transition-colors">
             {barber.name}
           </h3>
           <p className="text-xs font-semibold uppercase tracking-wider text-[#B08D57]">
@@ -61,18 +61,18 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
       {/* Body Content */}
       <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
         <div className="space-y-4">
-          <p className="text-xs text-[#A19B91] leading-relaxed">
+          <p className="text-xs text-[var(--text-muted)] leading-relaxed">
             {barber.bio}
           </p>
 
           {/* Specialties Skill Chips */}
           <div className="space-y-2">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#A19B91]">Specialties:</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">Specialties:</span>
             <div className="flex flex-wrap gap-1.5">
               {barber.specialties.map((skill, idx) => (
                 <span
                   key={idx}
-                  className="px-2.5 py-1 rounded-sm bg-[#232323] border border-white/10 text-[11px] text-[#F5F1EA]"
+                  className="px-2.5 py-1 rounded-sm bg-[var(--site-bg)] border border-[var(--border-subtle)] text-[11px] text-[var(--text-main)]"
                 >
                   {skill}
                 </span>
@@ -82,7 +82,7 @@ export const BarberCard: React.FC<BarberCardProps> = ({ barber }) => {
         </div>
 
         {/* Schedule Trigger */}
-        <div className="pt-4 border-t border-white/10">
+        <div className="pt-4 border-t border-[var(--border-subtle)]">
           <Button
             variant="outline"
             size="md"

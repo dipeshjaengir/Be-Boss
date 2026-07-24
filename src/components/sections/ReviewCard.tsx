@@ -14,7 +14,7 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="p-6 sm:p-7 rounded-lg bg-white border border-[#D5CFBF] hover:border-[#B08D57] transition-all duration-300 shadow-md flex flex-col justify-between space-y-4 group"
+      className="p-6 sm:p-7 rounded-xl bg-[var(--card-bg)] border border-[var(--border-card)] hover:border-[#B08D57] transition-all duration-300 shadow-md flex flex-col justify-between space-y-4 group"
     >
       <div className="space-y-3">
         {/* Header: Stars & Verified Badge */}
@@ -36,22 +36,22 @@ export const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
         {/* Quote Copy */}
         <div className="relative">
           <Quote className="w-6 h-6 text-[#B08D57]/30 absolute -top-2 -left-2 rotate-180" />
-          <p className="text-xs text-[#525252] leading-relaxed relative z-10 pt-2 italic">
+          <p className="text-xs text-[var(--text-muted)] leading-relaxed relative z-10 pt-2 italic">
             "{review.text}"
           </p>
         </div>
       </div>
 
       {/* Footer: Service Tag & Author Details */}
-      <div className="pt-4 border-t border-[#E0DBCF] flex items-center justify-between text-xs">
+      <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between text-xs">
         <div>
-          <h4 className="font-display font-semibold text-[#171717] group-hover:text-[#B08D57] transition-colors">
+          <h4 className="font-display font-semibold text-[var(--text-main)] group-hover:text-[#B08D57] transition-colors">
             {review.author}
           </h4>
-          <span className="text-[10px] text-[#525252]">{review.date}</span>
+          <span className="text-[10px] text-[var(--text-muted)]">{review.date}</span>
         </div>
 
-        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#B08D57] px-2 py-1 rounded-sm bg-[#F0ECE1] border border-[#D5CFBF]">
+        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#B08D57] px-2 py-1 rounded-sm bg-[var(--site-bg)] border border-[var(--border-subtle)]">
           {review.service}
         </span>
       </div>
