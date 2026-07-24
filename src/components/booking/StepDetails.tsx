@@ -35,7 +35,7 @@ export const StepDetails: React.FC = () => {
     }
 
     if (!agreeTerms) {
-      setErrorMsg('You must agree to the Privacy Policy and Terms of Service to complete reservation.');
+      setErrorMsg('You must agree to the Privacy Policy and Terms & Conditions to complete reservation.');
       return;
     }
 
@@ -133,7 +133,7 @@ export const StepDetails: React.FC = () => {
                 Privacy Policy
               </a>{' '}
               and{' '}
-              <a href="/terms" target="_blank" className="text-[#B08D57] underline hover:text-[#C5A065]">
+              <a href="/terms-and-conditions" target="_blank" className="text-[#B08D57] underline hover:text-[#C5A065]">
                 Terms & Conditions
               </a>. *
             </span>

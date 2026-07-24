@@ -111,7 +111,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap items-center justify-center gap-6">
             <a href="/privacy-policy" className="hover:text-[#B08D57] transition-colors">Privacy Policy</a>
             <a href="/cookie-policy" className="hover:text-[#B08D57] transition-colors">Cookie Policy</a>
-            <a href="/terms" className="hover:text-[#B08D57] transition-colors">Terms & Conditions</a>
+            <a href="/terms-and-conditions" className="hover:text-[#B08D57] transition-colors">Terms & Conditions</a>
             <a href="/accessibility" className="hover:text-[#B08D57] transition-colors">Accessibility</a>
             <button
               onClick={openPreferencesModal}

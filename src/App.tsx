@@ -26,6 +26,7 @@ export function App() {
                   <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
                   <Route path="/cookie-policy" element={<CookiePolicyPage />} />
                   <Route path="/terms" element={<TermsPage />} />
+                  <Route path="/terms-and-conditions" element={<TermsPage />} />
                   <Route path="/accessibility" element={<AccessibilityPage />} />
                 </Routes>
               </Suspense>
