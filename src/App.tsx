@@ -9,6 +9,7 @@ import LoadingScreen from './components/ui/LoadingScreen';
 // Route-level Code Splitting for Performance
 const HomePage = lazy(() => import('./pages/HomePage'));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage'));
+const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const AccessibilityPage = lazy(() => import('./pages/AccessibilityPage'));
 
@@ -23,6 +24,7 @@ export function App() {
                 <Routes>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                  <Route path="/cookie-policy" element={<CookiePolicyPage />} />
                   <Route path="/terms" element={<TermsPage />} />
                   <Route path="/accessibility" element={<AccessibilityPage />} />
                 </Routes>

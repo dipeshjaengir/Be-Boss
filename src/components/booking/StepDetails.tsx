@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import Input from '../ui/Input';
-import Button from '../ui/Button';
+import { User, Mail, Phone, Lock, ShieldCheck } from 'lucide-react';
 import { useBookingContext } from '../../context/BookingContext';
-import { ArrowRight } from 'lucide-react';
-import { formatGBP } from '../../lib/utils';
-import { format } from 'date-fns';
+import Button from '../ui/Button';
+import Input from '../ui/Input';
 
 export const StepDetails: React.FC = () => {
   const { state, updateClientInfo, setStep } = useBookingContext();
@@ -13,129 +11,152 @@ export const StepDetails: React.FC = () => {
   const [email, setEmail] = useState<string>(state.clientEmail || '');
   const [phone, setPhone] = useState<string>(state.clientPhone || '');
   const [notes, setNotes] = useState<string>(state.notes || '');
-  const [consent, setConsent] = useState<boolean>(state.consentAgreed);
-  const [error, setError] = useState<string>('');
+  const [agreeTerms, setAgreeTerms] = useState<boolean>(state.consentAgreed || false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !phone) {
-      setError('Please fill in all mandatory contact fields.');
+    setErrorMsg(null);
+
+    if (!name.trim()) {
+      setErrorMsg('Please enter your full name.');
       return;
     }
-    if (!consent) {
-      setError('Please accept the UK GDPR privacy consent terms.');
+
+    if (!email.trim() || !email.includes('@')) {
+      setErrorMsg('Please enter a valid email address for confirmation.');
       return;
     }
-    setError('');
-    updateClientInfo({
-      name,
-      email,
-      phone,
-      consent,
-      notes,
-    });
+
+    if (!phone.trim() || phone.length < 8) {
+      setErrorMsg('Please enter a valid UK contact phone number.');
+      return;
+    }
+
+    if (!agreeTerms) {
+      setErrorMsg('You must agree to the Privacy Policy and Terms of Service to complete reservation.');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Input Sanitization
+    const sanitizedName = name.trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const sanitizedNotes = notes.trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      updateClientInfo({
+        name: sanitizedName,
+        email: email.trim(),
+        phone: phone.trim(),
+        consent: agreeTerms,
+        notes: sanitizedNotes,
+      });
+    }, 500);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-6 text-left">
       <div className="space-y-1">
-        <h4 className="font-display font-semibold text-xl text-white">Client Information</h4>
-        <p className="text-xs text-neutral-400">Please provide your details to confirm your appointment.</p>
+        <h3 className="font-display font-semibold text-xl text-[var(--text-main)]">Your Details</h3>
+        <p className="text-xs text-[var(--text-muted)]">
+          Please provide contact information to receive your instant SMS and email booking ticket.
+        </p>
       </div>
 
-      {/* Booking Summary Box */}
-      <div className="p-4 rounded-xl bg-[#0A0B0D] border border-white/10 space-y-2 text-xs">
-        <div className="flex items-center justify-between text-neutral-300 font-semibold border-b border-white/5 pb-2">
-          <span>{state.selectedService?.name || 'Grooming Service'}</span>
-          <span className="text-[#D4AF37] font-bold text-sm">
-            {formatGBP(state.selectedService?.priceGBP || 0)}
-          </span>
+      {errorMsg && (
+        <div className="p-3 rounded-md bg-red-500/10 border border-red-500/30 text-xs text-red-400">
+          {errorMsg}
         </div>
-        <div className="flex flex-wrap items-center justify-between text-neutral-400 text-[11px]">
-          <span>Barber: {state.selectedBarber?.name || 'Any Craftsman'}</span>
-          <span>
-            Time:{' '}
-            {state.selectedDate ? format(state.selectedDate, 'dd MMM yyyy') : 'Selected Date'} at{' '}
-            {state.selectedTimeSlot || 'Time'}
-          </span>
-        </div>
-      </div>
+      )}
 
-      {/* Input Fields */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         <Input
           label="Full Name *"
-          placeholder="e.g. James Sterling"
+          placeholder="e.g., Alexander Wright"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          leftIcon={<User className="w-4 h-4" />}
           required
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Input
-            label="Email Address *"
-            type="email"
-            placeholder="james@example.co.uk"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <Input
-            label="UK Mobile Phone *"
-            type="tel"
-            placeholder="+44 7700 900000"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            required
-          />
-        </div>
 
-        {/* Special Notes */}
+        <Input
+          label="Email Address *"
+          type="email"
+          placeholder="e.g., alexander@example.co.uk"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          leftIcon={<Mail className="w-4 h-4" />}
+          required
+        />
+
+        <Input
+          label="UK Mobile Phone *"
+          type="tel"
+          placeholder="e.g., 07700 900123"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          leftIcon={<Phone className="w-4 h-4" />}
+          required
+        />
+
         <div className="space-y-1.5">
-          <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-300">
-            Special Requests / Drink Preference (Optional)
+          <label className="block text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+            Barber Notes (Optional)
           </label>
-          <textarea
-            rows={2}
-            placeholder="e.g. Preferred scotch, skin sensitivity notes..."
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            className="w-full px-4 py-2.5 bg-[#0A0B0D] border border-[#2A2E37] rounded-lg text-[#F9FAFB] placeholder:text-neutral-500 text-xs focus:outline-none focus:border-[#D4AF37]"
-          />
+          <div className="relative">
+            <textarea
+              rows={3}
+              placeholder="Specify hair texture preferences, skin fade length, or hot towel preferences..."
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full px-4 py-3 text-xs bg-[var(--card-bg)] text-[var(--text-main)] placeholder-[var(--text-muted)] border border-[var(--border-card)] rounded-sm focus:outline-none focus:border-[#B08D57]"
+            />
+          </div>
         </div>
 
-        {/* UK GDPR Consent Checkbox */}
-        <div className="pt-2">
-          <label className="flex items-start space-x-2.5 cursor-pointer">
+        {/* Required UK GDPR Agreement Checkbox */}
+        <div className="pt-2 p-3.5 rounded-lg bg-[var(--site-bg)] border border-[var(--border-subtle)] space-y-2">
+          <label className="flex items-start space-x-3 cursor-pointer">
             <input
               type="checkbox"
-              checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
-              className="mt-0.5 rounded border-neutral-700 bg-neutral-900 text-[#D4AF37] focus:ring-[#D4AF37]"
+              checked={agreeTerms}
+              onChange={(e) => setAgreeTerms(e.target.checked)}
+              className="mt-0.5 w-4 h-4 text-[#B08D57] border-[var(--border-card)] rounded focus:ring-[#B08D57]"
+              required
             />
-            <span className="text-[11px] text-neutral-300 leading-tight">
-              I agree to the{' '}
-              <a href="/privacy-policy" target="_blank" className="text-[#D4AF37] underline">
+            <span className="text-xs text-[var(--text-muted)] leading-relaxed">
+              I have read and agree to the{' '}
+              <a href="/privacy-policy" target="_blank" className="text-[#B08D57] underline hover:text-[#C5A065]">
                 Privacy Policy
               </a>{' '}
-              and consent to receiving appointment reminders via SMS & Email (UK GDPR).
+              and{' '}
+              <a href="/terms" target="_blank" className="text-[#B08D57] underline hover:text-[#C5A065]">
+                Terms & Conditions
+              </a>. *
             </span>
           </label>
+          <div className="flex items-center space-x-1.5 text-[10px] text-[#B08D57] pl-7">
+            <Lock className="w-3 h-3 shrink-0" />
+            <span>256-Bit SSL Encrypted • Zero Data Disclosure</span>
+          </div>
         </div>
-
-        {error && <p className="text-xs text-red-400 font-medium pt-1">{error}</p>}
       </div>
 
-      {/* Action Buttons */}
-      <div className="flex items-center space-x-3 pt-3 border-t border-white/10">
-        <Button variant="secondary" size="md" onClick={() => setStep('datetime')} type="button">
+      {/* Buttons */}
+      <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between space-x-3">
+        <Button variant="ghost" size="md" type="button" onClick={() => setStep('datetime')}>
           Back
         </Button>
         <Button
-          variant="gold-glow"
+          variant="primary"
           size="md"
-          fullWidth
           type="submit"
-          rightIcon={<ArrowRight className="w-4 h-4" />}
+          isLoading={isSubmitting}
+          leftIcon={<ShieldCheck className="w-4 h-4" />}
+          disabled={!agreeTerms}
         >
           Confirm Reservation
         </Button>

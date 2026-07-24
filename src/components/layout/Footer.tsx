@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Clock, Shield, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Clock, Shield, ArrowRight, CheckCircle2, Settings } from 'lucide-react';
 import Container from './Container';
 import Button from '../ui/Button';
 import Input from '../ui/Input';
 import { SITE_CONFIG } from '../../config/site-config';
+import { useCookieConsent } from '../../context/CookieContext';
 
 export const Footer: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [subscribed, setSubscribed] = useState<boolean>(false);
+  const { openPreferencesModal } = useCookieConsent();
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +37,7 @@ export const Footer: React.FC = () => {
             </p>
             <div className="pt-2 flex items-center space-x-2 text-[11px] text-[#B08D57]">
               <Shield className="w-4 h-4 shrink-0" />
-              <span>UK GDPR Compliant • Licensed Barber Establishment</span>
+              <span>UK GDPR & PECR Compliant • Licensed Establishment</span>
             </div>
           </div>
 
@@ -106,10 +108,18 @@ export const Footer: React.FC = () => {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[var(--text-muted)] space-y-4 md:space-y-0">
           <p>© {new Date().getFullYear()} BE BOSS Barbers Ltd. All rights reserved. Portsmouth, UK.</p>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap items-center justify-center gap-6">
             <a href="/privacy-policy" className="hover:text-[#B08D57] transition-colors">Privacy Policy</a>
-            <a href="/terms" className="hover:text-[#B08D57] transition-colors">Terms of Service</a>
-            <a href="/accessibility" className="hover:text-[#B08D57] transition-colors">Accessibility Statement</a>
+            <a href="/cookie-policy" className="hover:text-[#B08D57] transition-colors">Cookie Policy</a>
+            <a href="/terms" className="hover:text-[#B08D57] transition-colors">Terms & Conditions</a>
+            <a href="/accessibility" className="hover:text-[#B08D57] transition-colors">Accessibility</a>
+            <button
+              onClick={openPreferencesModal}
+              className="text-[#B08D57] hover:underline flex items-center space-x-1 focus:outline-none"
+            >
+              <Settings className="w-3.5 h-3.5" />
+              <span>Cookie Settings</span>
+            </button>
           </div>
         </div>
       </Container>
