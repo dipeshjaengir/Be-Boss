@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, Calendar, Phone, Sun, Moon } from 'lucide-react';
 import Button from '../ui/Button';
 import MobileNav from './MobileNav';
@@ -26,10 +27,10 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-[500] transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-[500] transition-all duration-400 bg-[var(--site-bg)]/90 backdrop-blur-md ${
           isScrolled
-            ? 'py-3 bg-[var(--site-bg)]/90 backdrop-blur-md border-b border-[var(--border-subtle)] shadow-md'
-            : 'py-5 bg-transparent border-b border-[var(--border-subtle)]'
+            ? 'py-3 border-b border-[var(--border-subtle)] shadow-md'
+            : 'py-5 border-b border-[var(--border-subtle)]/40'
         }`}
         role="banner"
       >
@@ -50,7 +51,7 @@ export const Header: React.FC = () => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center space-x-1 bg-[var(--card-bg)]/70 p-1.5 rounded-full border border-[var(--border-subtle)] backdrop-blur-sm" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-1 bg-[var(--card-bg)]/80 p-1.5 rounded-full border border-[var(--border-subtle)] backdrop-blur-sm" aria-label="Main Navigation">
             {NAV_ITEMS.map((item) => {
               const isActive = activeHash === item.href;
               return (
@@ -72,29 +73,33 @@ export const Header: React.FC = () => {
 
           {/* Right Action & Theme Toggle Group */}
           <div className="hidden sm:flex items-center space-x-3">
-            <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-xs text-[var(--text-muted)] hover:text-[#B08D57] flex items-center space-x-1.5 transition-colors">
+            <a href={`tel:${SITE_CONFIG.contact.phone}`} className="text-xs text-[var(--text-muted)] hover:text-[#B08D57] flex items-center space-x-1.5 transition-colors mr-1">
               <Phone className="w-3.5 h-3.5 text-[#B08D57]" />
               <span>{SITE_CONFIG.contact.phone}</span>
             </a>
 
-            {/* Premium Day / Night Theme Switcher */}
+            {/* Circular Icon-Only Theme Switcher Button (40px x 40px) */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full bg-[var(--card-bg)] border border-[var(--border-subtle)] text-[var(--text-main)] hover:border-[#B08D57] hover:text-[#B08D57] transition-all focus:outline-none focus:ring-2 focus:ring-[#B08D57] flex items-center space-x-1.5 text-xs font-semibold px-3"
+              className="w-10 h-10 rounded-full bg-[var(--card-bg)] border border-[var(--border-subtle)] text-[var(--text-main)] hover:border-[#B08D57] hover:text-[#B08D57] transition-all flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[#B08D57] shadow-sm shrink-0 overflow-hidden"
               aria-label={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
               title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
             >
-              {theme === 'dark' ? (
-                <>
-                  <Moon className="w-4 h-4 text-[#B08D57]" />
-                  <span>Dark</span>
-                </>
-              ) : (
-                <>
-                  <Sun className="w-4 h-4 text-[#B08D57]" />
-                  <span>Light</span>
-                </>
-              )}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={theme}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                >
+                  {theme === 'dark' ? (
+                    <Moon className="w-4 h-4 text-[#B08D57]" />
+                  ) : (
+                    <Sun className="w-4 h-4 text-[#B08D57]" />
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </button>
 
             <Button
@@ -107,14 +112,24 @@ export const Header: React.FC = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu & Theme Switcher */}
+          {/* Mobile Menu & Circular Theme Switcher */}
           <div className="flex items-center space-x-2 lg:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-[var(--card-bg)] border border-[var(--border-subtle)] text-[var(--text-main)] hover:border-[#B08D57] transition-all"
+              className="w-9 h-9 rounded-full bg-[var(--card-bg)] border border-[var(--border-subtle)] text-[var(--text-main)] hover:border-[#B08D57] flex items-center justify-center transition-all overflow-hidden"
               aria-label="Toggle theme mode"
             >
-              {theme === 'dark' ? <Moon className="w-4 h-4 text-[#B08D57]" /> : <Sun className="w-4 h-4 text-[#B08D57]" />}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={theme}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.7 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                >
+                  {theme === 'dark' ? <Moon className="w-4 h-4 text-[#B08D57]" /> : <Sun className="w-4 h-4 text-[#B08D57]" />}
+                </motion.div>
+              </AnimatePresence>
             </button>
             <Button
               variant="primary"
